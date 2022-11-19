@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { persistStore } from "./persistStore";
 
 
 const initial = [
@@ -32,4 +33,4 @@ const initial = [
     },
 ]
 
-export const TransactionStore = writable(initial)
+export const TransactionStore = persistStore('transactionValues',initial)

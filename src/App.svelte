@@ -1,5 +1,6 @@
 <script>
  import Header from "./lib/Header.svelte"
+  import Sidebar from "./lib/Sidebar.svelte";
 </script>
 
 <div class="p-1">
@@ -8,6 +9,7 @@
 
   <div class="d-flex flex-column flex-sm-row">
     <!--Sidebar-->
+    <Sidebar  />
     <div class="flex-grow-1 pt-3">
       <!--Tranaction Header-->
       <div>

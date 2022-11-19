@@ -1,6 +1,7 @@
 <script>
  import Header from "./lib/Header.svelte"
   import Sidebar from "./lib/Sidebar.svelte";
+  import TransactionHeader from "./lib/TransactionHeader.svelte";
 </script>
 
 <div class="p-1">
@@ -12,6 +13,7 @@
     <Sidebar  />
     <div class="flex-grow-1 pt-3">
       <!--Tranaction Header-->
+      <TransactionHeader  />
       <div>
         <!--TransactionCardList-->
       </div>

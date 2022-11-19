@@ -1,6 +1,7 @@
 <script>
  import Header from "./lib/Header.svelte"
   import Sidebar from "./lib/Sidebar.svelte";
+  import TransactionCardList from "./lib/TransactionCardList.svelte";
   import TransactionHeader from "./lib/TransactionHeader.svelte";
 </script>
 
@@ -19,6 +20,7 @@
       </div>
       <div>
         <!--TransactionTableList-->
+        <TransactionCardList  />
       </div>
     </div>
   </div>

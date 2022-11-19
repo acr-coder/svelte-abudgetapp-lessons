@@ -1,9 +1,10 @@
 <script>
- 
+ import Header from "./lib/Header.svelte"
 </script>
 
 <div class="p-1">
   <!--Header-->
+  <Header  />
 
   <div class="d-flex flex-column flex-sm-row">
     <!--Sidebar-->

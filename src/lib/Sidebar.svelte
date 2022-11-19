@@ -1,4 +1,6 @@
 <script>
+  import TransactionForm from "./TransactionForm.svelte";
+
 
 </script>
 
@@ -18,4 +20,5 @@
             <option value="Investment" selected>Investment</option>
         </select>
     </div>
+    <TransactionForm  />
 </div>

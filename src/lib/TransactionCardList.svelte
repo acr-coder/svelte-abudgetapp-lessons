@@ -1,35 +1,22 @@
 <script>
   import TransactionCard from "./TransactionCard.svelte";
+    import { TransactionStore } from "../store"
 
+    $:transactionList = $TransactionStore
 
 </script>
 
 
 <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around">
-    <div class="my-card">
-        <TransactionCard  />
+    {#each transactionList as transaction (transaction.id) }
+        <div class="my-card">
+        <TransactionCard {transaction} />
         
     </div>
-    <div class="my-card">
-        <TransactionCard  />
-        
-    </div>
-    <div class="my-card">
-        <TransactionCard  />
-        
-    </div>
-    <div class="my-card">
-        <TransactionCard  />
-        
-    </div>
-    <div class="my-card">
-        <TransactionCard  />
-        
-    </div>
-    <div class="my-card">
-        <TransactionCard  />
-        
-    </div>
+    {/each}
+
+    
+    
     
 </div>
 

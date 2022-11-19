@@ -1,12 +1,22 @@
 <script>
     import { Card, CardBody } from "sveltestrap"
+
+    export let transaction;
+    let border;
+    if(transaction.type === "Income"){
+        border = "border border-primary border-4"
+    }else if(transaction.type === "Expense"){
+        border = "border border-danger border-4"
+    }else{
+        border = "border border-warning border-4"
+    }
 </script>
 
 
-<Card>
-    <CardBody class="text-center">Maaş</CardBody>
-    <span class="money text-danger fw-bolder">5000</span>
-    <span class="date text-danger fw-bolder">22-05-2022</span>
+<Card class={border} >
+    <CardBody class="text-center">{transaction.name}</CardBody>
+    <span class="money text-danger fw-bolder">{transaction.amount}</span>
+    <span class="date text-danger fw-bolder">{transaction.date}</span>
     <span class="delete-btn">X</span>
 </Card>
 

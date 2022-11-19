@@ -1,5 +1,14 @@
 <script>
-     import { Progress } from 'sveltestrap';
+  import { Progress } from "sveltestrap";
+  import {
+    TransactionStore,
+    countOfIncome,
+    countOfExpense,
+    countOfInvestment,
+    amountOfIncome,
+    amountOfExpense,
+    amountOfInvestment,
+  } from "../store";
 </script>
 
 <div class="d-flex flex-column flex-md-row justify-content-around">
@@ -8,13 +17,15 @@
     style="background-color: #c5cbd8; max-width:75%;"
   >
     <div class="card-text fs-3 fw-bolder" style="color: #3b5998;">
-      Income: <span class="text-danger">$15000</span>
+      Income: <span class="text-danger">${$amountOfIncome}</span>
     </div>
     <div class="card-text fs-3 fw-bolder" style="color: #3b5998;">
-      Transactions:<span class="text-danger">15</span>
+      Transactions:<span class="text-danger"
+        >{$countOfExpense + $countOfIncome + $countOfInvestment}</span
+      >
     </div>
     <div class="card-text fs-3 fw-bolder" style="color: #3b5998;">
-      Budget:<span class="text-danger">$7000</span>
+      Budget:<span class="text-danger">${$amountOfIncome - $amountOfExpense - $amountOfInvestment}</span>
     </div>
   </div>
   <!--Investment Statics-->
@@ -31,17 +42,19 @@
           class="bg-primary rounded-circle"
           style="width: 10px;height:10px;"
         />
-        <div class="ms-2 card-text">5 transactions</div>
+        <div class="ms-2 card-text">{$countOfInvestment} transactions</div>
       </div>
       <div class="d-flex align-items-center">
         <div
           class="bg-warning rounded-circle"
           style="width: 10px;height:10px;"
         />
-        <div class="ms-2 card-text">$3000</div>
+        <div class="ms-2 card-text">${$amountOfInvestment}</div>
       </div>
-      <Progress value={75}  color="danger" class="mt-1 mb-1" />
-      <span style="font-size: 12px;" >Investments / Incomes <span class="fw-bolder">{75}%</span> </span>
+      <Progress value={$amountOfInvestment / $amountOfIncome * 100} color="danger" class="mt-1 mb-1" />
+      <span style="font-size: 12px;"
+        >Investments / Incomes <span class="fw-bolder">{ $amountOfIncome ? Math.floor($amountOfInvestment / $amountOfIncome * 100) : 0}%</span>
+      </span>
     </div>
   </div>
 
@@ -53,30 +66,32 @@
     <div class="card-text fs-2 fw-bolder" style="color: #3b5998;">Expenses</div>
     <div class="d-flex align-items-center">
       <div class="bg-primary rounded-circle" style="width: 10px;height:10px;" />
-      <div class="ms-2 card-text">5 transactions</div>
+      <div class="ms-2 card-text">{$countOfExpense} transactions</div>
     </div>
     <div class="d-flex align-items-center">
       <div class="bg-warning rounded-circle" style="width: 10px;height:10px;" />
-      <div class="ms-2 card-text">$3000</div>
+      <div class="ms-2 card-text">${$amountOfExpense}</div>
     </div>
-    <Progress value={35}  color="danger" class="mt-1 mb-1" />
-    <span style="font-size: 12px;" >Expenses / Incomes <span class="fw-bolder">{35}%</span> </span>
+    <Progress value={$amountOfExpense / $amountOfIncome * 100} color="danger" class="mt-1 mb-1" />
+    <span style="font-size: 12px;"
+      >Expenses / Incomes <span class="fw-bolder">{$amountOfIncome ?  Math.floor($amountOfExpense / $amountOfIncome * 100) : 0}%</span>
+    </span>
   </div>
 </div>
 
 <style>
-    .t-card{
-        min-width: 25%;
+  .t-card {
+    min-width: 25%;
+  }
+  @media (max-width: 768px) {
+    .t-card {
+      min-width: 75%;
+      margin: auto;
     }
-    @media (max-width: 768px){
-        .t-card{
-            min-width: 75%;
-            margin: auto;
-        }
+  }
+  @media (max-width: 801px) {
+    .card-text {
+      font-size: 15px;
     }
-    @media (max-width: 801px){
-        .card-text{
-            font-size: 15px;
-        }
-    }
+  }
 </style>

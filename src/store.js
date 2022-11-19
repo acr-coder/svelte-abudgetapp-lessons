@@ -1,36 +1,41 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 import { persistStore } from "./persistStore";
 
 
 const initial = [
-    {
-        id:1,
-        name:"maaş",
-        type:"Income",
-        amount:5000,
-        date:"01-01-2022"
-    },
-    {
-        id:2,
-        name:"kira",
-        type:"Expense",
-        amount:2000,
-        date:"04-05-2022"
-    },
-    {
-        id:3,
-        name:"altın aldım",
-        type:"Investment",
-        amount:1000,
-        date:"03-07-2022"
-    },
-    {
-        id:4,
-        name:"euro",
-        type:"Investment",
-        amount:500,
-        date:"05-07-2022"
-    },
+   
 ]
 
 export const TransactionStore = persistStore('transactionValues',initial)
+
+export const countOfIncome = derived(
+  TransactionStore,
+  // @ts-ignore
+  $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Income").length  
+)
+export const countOfExpense = derived(
+  TransactionStore,
+  // @ts-ignore
+  $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Expense").length  
+)
+export const countOfInvestment = derived(
+  TransactionStore,
+  // @ts-ignore
+  $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Investment").length  
+)
+
+export const amountOfIncome = derived(
+    TransactionStore,
+    // @ts-ignore
+    $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Income").reduce((a,item) => a + item.amount, 0)  
+  )
+export const amountOfExpense = derived(
+    TransactionStore,
+    // @ts-ignore
+    $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Expense").reduce((a,item) => a + item.amount, 0)  
+  )
+export const amountOfInvestment = derived(
+    TransactionStore,
+    // @ts-ignore
+    $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Investment").reduce((a,item) => a + item.amount, 0)  
+  )

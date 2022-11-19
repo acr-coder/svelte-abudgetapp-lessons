@@ -1,4 +1,5 @@
 <script>
+     import { Progress } from 'sveltestrap';
 </script>
 
 <div class="d-flex flex-column flex-md-row justify-content-around">
@@ -16,6 +17,7 @@
       Budget:<span class="text-danger">$7000</span>
     </div>
   </div>
+  <!--Investment Statics-->
   <div
     class="t-card d-flex flex-column shadow p-3 mb-5 rounded "
     style="background-color: #c5cbd8; max-width:75%;"
@@ -38,8 +40,12 @@
         />
         <div class="ms-2 card-text">$3000</div>
       </div>
+      <Progress value={75}  color="danger" class="mt-1 mb-1" />
+      <span style="font-size: 12px;" >Investments / Incomes <span class="fw-bolder">{75}%</span> </span>
     </div>
   </div>
+
+  <!--Expenses Statics-->
   <div
     class="t-card d-flex flex-column shadow p-3 mb-5 rounded "
     style="background-color: #c5cbd8; max-width:75%;"
@@ -53,5 +59,24 @@
       <div class="bg-warning rounded-circle" style="width: 10px;height:10px;" />
       <div class="ms-2 card-text">$3000</div>
     </div>
+    <Progress value={35}  color="danger" class="mt-1 mb-1" />
+    <span style="font-size: 12px;" >Expenses / Incomes <span class="fw-bolder">{35}%</span> </span>
   </div>
 </div>
+
+<style>
+    .t-card{
+        min-width: 25%;
+    }
+    @media (max-width: 768px){
+        .t-card{
+            min-width: 75%;
+            margin: auto;
+        }
+    }
+    @media (max-width: 801px){
+        .card-text{
+            font-size: 15px;
+        }
+    }
+</style>

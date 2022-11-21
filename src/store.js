@@ -29,13 +29,32 @@ export const amountOfIncome = derived(
     // @ts-ignore
     $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Income").reduce((a,item) => a + item.amount, 0)  
   )
+export const IncomeStore = derived(
+    TransactionStore,
+    // @ts-ignore
+    $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Income")  
+  )
 export const amountOfExpense = derived(
     TransactionStore,
     // @ts-ignore
     $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Expense").reduce((a,item) => a + item.amount, 0)  
+  )
+export const ExpenseStore = derived(
+    TransactionStore,
+    // @ts-ignore
+    $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Expense")  
   )
 export const amountOfInvestment = derived(
     TransactionStore,
     // @ts-ignore
     $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Investment").reduce((a,item) => a + item.amount, 0)  
   )
+export const InvestmentStore = derived(
+    TransactionStore,
+    // @ts-ignore
+    $TransactionStore => $TransactionStore.filter((transaction) => transaction.type === "Investment") 
+  )
+
+  const initialSelectedType = "all"
+
+  export const SelectedTypeStore = persistStore('type',initialSelectedType)

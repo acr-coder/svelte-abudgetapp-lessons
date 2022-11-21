@@ -1,7 +1,19 @@
 <script>
-    import { TransactionStore } from "../store"
+    
+    import { TransactionStore, SelectedTypeStore, IncomeStore,ExpenseStore,InvestmentStore } from "../store"
+
 
     $:transactionList = $TransactionStore
+
+    $:if($SelectedTypeStore === "all"){
+        transactionList = $TransactionStore
+    }else if($SelectedTypeStore === "Income"){
+        transactionList = $IncomeStore
+    }else if($SelectedTypeStore === "Expense"){
+        transactionList = $ExpenseStore
+    }else if($SelectedTypeStore === "Investment"){
+        transactionList = $InvestmentStore
+    }
 
     const handleDelete = (id) => {
         $TransactionStore = $TransactionStore.filter(transaction => transaction.id != id)

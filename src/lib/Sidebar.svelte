@@ -1,7 +1,10 @@
 <script>
   import TransactionForm from "./TransactionForm.svelte";
 import { createEventDispatcher } from "svelte"
-import { SelectedTypeStore } from "../store"
+import { SelectedTypeStore, SearchStore } from "../store"
+
+let search = ""
+$:$SearchStore = search
 
 export let view;
 const dispatch = createEventDispatcher()
@@ -23,7 +26,7 @@ const handleView = (viewSelection) => {
     </div>
     <div>
         <div class="mt-3">
-            <input type="search" class="form-control" placeholder="search for transactions...">
+            <input bind:value={search} type="search" class="form-control" placeholder="search for transactions...">
         </div>
         <select bind:value={selectedType} class="form-select mt-3" >
             <option value="all" selected>All Transactions</option>

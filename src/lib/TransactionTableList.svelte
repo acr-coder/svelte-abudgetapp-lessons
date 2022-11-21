@@ -1,6 +1,6 @@
 <script>
     
-    import { TransactionStore, SelectedTypeStore, IncomeStore,ExpenseStore,InvestmentStore } from "../store"
+    import {SearchStore, TransactionStore, SelectedTypeStore, IncomeStore,ExpenseStore,InvestmentStore } from "../store"
 
 
     $:transactionList = $TransactionStore
@@ -14,6 +14,11 @@
     }else if($SelectedTypeStore === "Investment"){
         transactionList = $InvestmentStore
     }
+
+    $:visibleTransactions = $SearchStore ? 
+                            transactionList.filter(transaction => {
+                                return transaction.name.match(`${$SearchStore.toLocaleLowerCase()}.*`) || transaction.date.match(`${$SearchStore.toLocaleLowerCase()}.*`) 
+                            }) : transactionList
 
     const handleDelete = (id) => {
         $TransactionStore = $TransactionStore.filter(transaction => transaction.id != id)
@@ -32,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        {#each transactionList as transaction (transaction.id) }
+        {#each visibleTransactions as transaction (transaction.id) }
             <tr>
                 <td>{transaction.name}</td>
                 <td>{transaction.amount}</td>

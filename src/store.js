@@ -58,3 +58,7 @@ export const InvestmentStore = derived(
   const initialSelectedType = "all"
 
   export const SelectedTypeStore = persistStore('type',initialSelectedType)
+
+  const initialSearch = ""
+
+  export const SearchStore = persistStore('search', initialSearch)

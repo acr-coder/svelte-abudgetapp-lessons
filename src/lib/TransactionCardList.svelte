@@ -1,6 +1,6 @@
 <script>
   import TransactionCard from "./TransactionCard.svelte";
-    import { TransactionStore, SelectedTypeStore, IncomeStore,ExpenseStore,InvestmentStore } from "../store"
+    import {SearchStore, TransactionStore, SelectedTypeStore, IncomeStore,ExpenseStore,InvestmentStore } from "../store"
 
     $:transactionList = $TransactionStore
 
@@ -14,13 +14,18 @@
         transactionList = $InvestmentStore
     }
 
+    $:visibleTransactions = $SearchStore ? 
+                            transactionList.filter(transaction => {
+                                return transaction.name.match(`${$SearchStore.toLocaleLowerCase()}.*`) || transaction.date.match(`${$SearchStore.toLocaleLowerCase()}.*`) 
+                            }) : transactionList
+
 
 
 </script>
 
 
 <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-around">
-    {#each transactionList as transaction (transaction.id) }
+    {#each visibleTransactions as transaction (transaction.id) }
         <div class="my-card">
         <TransactionCard {transaction} />
         

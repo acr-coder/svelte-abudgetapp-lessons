@@ -1,5 +1,6 @@
 <script>
   import {
+    LangStore,
     SearchStore,
     TransactionStore,
     SelectedTypeStore,
@@ -44,11 +45,11 @@
 >
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Type</th>
-      <th>Date</th>
-      <th>Delete</th>
+      <th>{$LangStore === "EN" ? "Name" : "İsim"}</th>
+      <th>{$LangStore === "EN" ? "Amount" : "Miktar"}</th>
+      <th>{$LangStore === "EN" ? "Type" : "Tip"}</th>
+      <th>{$LangStore === "EN" ? "Date" : "Tarih"}</th>
+      <th>{$LangStore === "EN" ? "Delete" : "Sil"}</th>
     </tr>
   </thead>
   <tbody>

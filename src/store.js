@@ -62,3 +62,7 @@ export const InvestmentStore = derived(
   const initialSearch = ""
 
   export const SearchStore = persistStore('search', initialSearch)
+
+  const initialLang = "EN"
+
+  export const LangStore = persistStore('lang',initialLang)
